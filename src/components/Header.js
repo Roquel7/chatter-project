@@ -13,6 +13,9 @@ const Header = props => {
                 <NavLink exact to ="/profile" className="item" activeClassName="active">
                     Profile
                 </NavLink>
+                <NavLink exact to ="/channels" className="item" activeClassName="active">
+                    Channels
+                </NavLink>
                 <NavLink exact to ="/info" className="item" activeClassName="active">
                     Info
                 </NavLink>

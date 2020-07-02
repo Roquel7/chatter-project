@@ -15,7 +15,7 @@ import LoginPage from '../pages/LoginPage'
 import SignUpPage from '../pages/SignUpPage'
 import ProfilePage from '../pages/ProfilePage'
 import HomePage from '../pages/HomePage'
-import WelcomePage from '../pages/WelcomePage'
+import ChannelPage from '../pages/ChannelPage'
 import InfoPage from '../pages/InfoPage'
 
 
@@ -58,6 +58,7 @@ const App = () => {
                             <PrivateRoute authenticated={ authenticated } path="/profile" component={ProfilePage} />
                             <PrivateRoute authenticated={ authenticated } path="/home" component={HomePage} />
                             <PrivateRoute authenticated={ authenticated } path="/info" component={InfoPage} />
+                            <PrivateRoute authenticated={ authenticated } path="/channels" component={ChannelPage} />
 
         
                         </Switch>

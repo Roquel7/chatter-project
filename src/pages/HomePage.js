@@ -16,7 +16,7 @@ const HomePage = props => {
                 </div>}
 
             { props.authenticated ? (
-                <SideMenu />
+                <h1>Home</h1>
             ) : (
                 <div className="ui container">
                 <div className ="ui buttons">

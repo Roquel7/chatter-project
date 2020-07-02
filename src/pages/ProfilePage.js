@@ -6,7 +6,7 @@ class ProfilePage extends React.Component {
         return (
             
             <div>
-            <SideMenu />
+            Profile
             </div>
         )
     }
