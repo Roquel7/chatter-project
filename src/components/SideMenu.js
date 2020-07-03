@@ -53,7 +53,7 @@ class SideMenu extends React.Component {
                 <div 
                     key={ channel.id }
                     className="item" 
-                    onClick={ () => this.selectChannel(channel)} 
+                    onClick={ () => this.props.selectChannel(channel)} 
                 >
                     {channel.name}
                 </div>

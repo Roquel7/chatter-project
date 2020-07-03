@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import SideMenu from '../components/SideMenu'
+import DisplayChannel from '../components/DisplayChannel'
 
 class ChannelPage extends React.Component {
     state = {
@@ -11,6 +12,12 @@ class ChannelPage extends React.Component {
         this.setState({ selectedChannel: channel })
     }
 
+    unselectChannel = () => {
+        this.setState({
+            selectedChannel: null
+        })
+    }
+
 
     render() {
         return (
@@ -19,7 +26,7 @@ class ChannelPage extends React.Component {
                     <SideMenu selectChannel={this.selectChannel} />
                 </div>
                 <div className="six wide column">
-                    {/* <ChannelDisplay channel={ this.state.selectedChannel } unSelect = {this.unSelectChannel} /> */}
+                    <DisplayChannel channel={ this.state.selectedChannel } unSelect = {this.unselectChannel} />
                 </div>
             </div>
         )
