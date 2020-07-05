@@ -7,7 +7,9 @@ const InfoPage = () => {
             as another tab on the Menu to make it a little more full. I might type what I need to 
             do in here to so that I can have that as I go. 
 
-            1. I will have my channels be stateful, then I will try to have the messages and stateless and using reducer fo this one. 
+            I need to find a way to keep the messages I send in order. I also need to find way to where certain
+            stay with the specific channel they were created at. 
+
         </div>
     )
 }

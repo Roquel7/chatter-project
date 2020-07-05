@@ -82,9 +82,9 @@ class SideMenu extends React.Component {
                                     placeholder="Add Channel" 
                                     onChange={ this.handleChange }
                                     value={ this.newChannel }
-                                />
-                                <i className="plus icon"></i>
-                            </div>
+                            />
+                            <i className="plus icon"></i>
+                        </div>
                     </div>
                 </form>
             </div>

@@ -1,16 +1,12 @@
 import React from 'react'
-import { deleteChannel } from '../helpers/db'
-
 import { addChannelMessage } from '../helpers/db'
 import { db } from '../services/firebase'
 
+import SideMenu from './SideMenu' 
 
-class DisplayChannel extends React.Component {
 
-    deletingChannel = () => {
-        deleteChannel(this.props.channel.id)
-        this.props.unSelect()
-    }
+
+class InputMessage extends React.Component {
 
     state = {
         messages: [],        
@@ -31,7 +27,7 @@ class DisplayChannel extends React.Component {
                     text: this.state.newMessage,
                     userId: 'uNVA55gbllS5s0zCNhcf2pO4ANB3',
                     dateCreated: new Date(),
-                    channelId: this.props.channel.id
+                    channelId: this.channel.id
                 })
                 this.setState({
                     newMessage: ''
@@ -45,12 +41,14 @@ class DisplayChannel extends React.Component {
         } catch(err) {
             console.log(err)
         }
+
+        console.log(this.state.newMessage)
     }
 
     renderMessages() {
         return this.state.messages.map(message => {
             return (
-                <div >
+                <div>
                 { message.text }    
                 </div>
             )
@@ -74,57 +72,28 @@ class DisplayChannel extends React.Component {
             })
     }
 
-
-
-
-
-
-
-
-
-
     render() {
-        return this.props.channel ? (
-            <div className="ui segment">
-                <div  className="ui segment">
-                    { this.props.channel.name }
+        return (
+            <div>
+                { this.renderMessages() }
+                <form onSubmit={ this.addingMessage }>
+                    <div className="item">
+                        <div className="ui transparant icon input" >
+                            <input 
+                                onChange={ this.handleChange} 
+                                value={ this.state.newMessage}
+                                name="newMessage"
+                                type="text" 
+                                placeholder="message"  
 
-                </div>
-                <span onClick={ this.deletingChannel } className="left floated">
-                <i className=" large trash icon" ></i>
-                </span>
-
-                <div>
-                    { this.renderMessages() }
-                    <form onSubmit={ this.addingMessage }>
-                        <div className="item">
-                            <div className="ui transparant icon input" >
-                                <input 
-                                    onChange={ this.handleChange} 
-                                    value={ this.state.newMessage}
-                                    name="newMessage"
-                                    type="text" 
-                                    placeholder="message"  
-
-                                />
-                                <i className=" large arrow alternate circle right outline icon"></i>
-                            </div>
+                            />
+                            <i className=" large arrow alternate circle right outline icon"></i>
                         </div>
-                    </form>
-                </div>
-
-
-
-
-
-            </div>
-
-        ) : (
-            <div className="ui segment">
-                Select a Channel
+                    </div>
+                </form>
             </div>
         )
     }
 }
 
-export default DisplayChannel
+export default InputMessage
