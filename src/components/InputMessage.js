@@ -2,7 +2,6 @@ import React from 'react'
 import { addChannelMessage } from '../helpers/db'
 import { db } from '../services/firebase'
 
-import SideMenu from './SideMenu' 
 
 
 

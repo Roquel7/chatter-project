@@ -50,7 +50,7 @@ class DisplayChannel extends React.Component {
     renderMessages() {
         return this.state.messages.map(message => {
             return (
-                <div >
+                <div key={message.id}>
                 { message.text }    
                 </div>
             )
@@ -73,15 +73,6 @@ class DisplayChannel extends React.Component {
                 })
             })
     }
-
-
-
-
-
-
-
-
-
 
     render() {
         return this.props.channel ? (

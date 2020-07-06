@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import SideMenu from '../components/SideMenu'
 import DisplayChannel from '../components/DisplayChannel'
-
+import MessageList from '../components/MessageList'
 
 
 class ChannelPage extends React.Component {
@@ -29,6 +29,7 @@ class ChannelPage extends React.Component {
                 </div>
                 <div className="six wide column">
                     <DisplayChannel channel={ this.state.selectedChannel } unSelect = {this.unselectChannel} />
+                    <MessageList  channel={ this.state.selectedChannel } unSelect = {this.unselectChannel}/>
                 </div>
             </div>
         )
