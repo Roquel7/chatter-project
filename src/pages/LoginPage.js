@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 import { signin, signInWithGoogle } from '../helpers/auth'
+import { addNewUser } from '../helpers/db'
+
 
 class LoginPage extends React.Component {
     state = {
@@ -12,7 +14,12 @@ class LoginPage extends React.Component {
 
     handleLogin = async (event) => {
         event.preventDefault()
-        console.log(event)
+        try {
+            let userResponse = await signInWithGoogle()
+            this.success(userResponse)
+        } catch(err) {
+            this.error(err)
+        }
     }
 
     handleSubmit = async (event) => {
@@ -26,7 +33,11 @@ class LoginPage extends React.Component {
         }
     }
 
-    success() {
+    success({ user, additionalUserInfo }) {
+        if (additionalUserInfo && additionalUserInfo.isNewUser) {
+            addNewUser(user)
+        }
+        console.log(' ', user)
         let { state } = this.props.location
         if (state && state.from) {
             this.props.history.push(state.from.pathname)
@@ -51,11 +62,13 @@ class LoginPage extends React.Component {
 
     render() {
         return (
-            <div>
-                <form className="ui form" onSubmit={this.handleSubmit}>
-                    <div className="ui container">
+            <div className="ui container">
+                <form className="ui form attached fluid segment" onSubmit={this.handleSubmit}>
+                    <div>
                         <div>
                             <h1>Login</h1>
+                            <div className="field">
+                                <label>Email</label>
                             <input
                                 placeholder="Email"
                                 type="email"
@@ -63,6 +76,10 @@ class LoginPage extends React.Component {
                                 onChange={ this.handleChange}
                                 value={ this.state.email }
                             />
+                            </div>
+
+                            <div className="field">
+                                <label>Password</label>
                             <input
                                 placeholder="Password"
                                 type="password"
@@ -71,8 +88,11 @@ class LoginPage extends React.Component {
                                 value={ this.state.passord }
 
                                 />
-                        </div>
+                            </div>
 
+
+                        </div>
+                        
                         <button className="ui primary basic button " type="submit" >Login</button>
                         <button className="ui secondary basic button" type="submit" onClick={ this.handleLogin }> Login Using Google </button>
 

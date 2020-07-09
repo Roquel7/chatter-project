@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { signup, signInWithGoogle } from '../helpers/auth'
+import { signup } from '../helpers/auth'
 
 class SignUpPage extends React.Component {
     state = {
@@ -45,24 +45,34 @@ class SignUpPage extends React.Component {
     render() {
         return (
             <div className="ui container">
-                <form className="ui form" onSubmit={this.handleSubmit}>
+                <form className="ui form attached fluid segment" onSubmit={this.handleSubmit}>
                     <div>
                         <h1>Sign Up</h1>
-    
-                        <input
-                            placeholder="Email"
-                            type="email"
-                            name="email" 
-                            onChange={ this.handleChange }
-                            value={ this.state.email}
+
+                        <div className="field">
+                            <label>Email</label>
+                            <input
+                                placeholder="Email"
+                                type="email"
+                                name="email" 
+                                onChange={ this.handleChange }
+                                value={ this.state.email}
                             />
-                        <input
-                            placeholder="Password"
-                            type="password"
-                            name="password" 
-                            onChange={ this.handleChange }
-                            value={ this.state.password}
+                        </div>
+
+                        <div className="field">
+                            <label>Password</label>
+                            <input
+                                placeholder="Password"
+                                type="password"
+                                name="password" 
+                                onChange={ this.handleChange }
+                                value={ this.state.password}
                             />
+                        </div>
+
+
+
                     </div>
 
                     <button className="ui fluid primary basic button" type="submit">Sign up</button>

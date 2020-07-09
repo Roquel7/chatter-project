@@ -2,10 +2,6 @@ import React from 'react'
 
 import { Link } from 'react-router-dom'
 
-import { signout } from '../helpers/auth'
-
-import SideMenu from '../components/SideMenu'
-
 const HomePage = props => {
     return (
         <div>

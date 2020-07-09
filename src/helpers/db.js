@@ -31,6 +31,7 @@ export function addNewUser(user) {
   })
 }
 
+
 export function joinChannel(channel, userId) {
   console.log(channel, userId)
   return db.collection('channels').doc(channel.id).set({

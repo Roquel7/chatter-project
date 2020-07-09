@@ -1,8 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import { addChatterChannel } from '../helpers/db'
 import { db } from '../services/firebase'
-
 
 class SideMenu extends React.Component {
 
@@ -44,19 +44,20 @@ class SideMenu extends React.Component {
                     channels
                 })
             })
+
         })
     }
 
     renderChannels() {
         return this.state.channels.map(channel => {
             return (
-                <div 
+                <a
                     key={ channel.id }
-                    className="item" 
+                    className=" item" 
                     onClick={ () => this.props.selectChannel(channel)} 
                 >
                     {channel.name}
-                </div>
+                </a>
             )
         })
     }
@@ -66,7 +67,6 @@ class SideMenu extends React.Component {
             [event.target.name]: event.target.value
         })
     }
-
 
     render() {
         return (
@@ -88,8 +88,16 @@ class SideMenu extends React.Component {
                     </div>
                 </form>
             </div>
+
         )
     }
 } 
 
-export default SideMenu
+const mapStateToProps = state => {
+    return {
+        channels: state.channels,
+        selectedChannel: state.selectedChannel
+    }
+}
+
+export default connect(mapStateToProps)(SideMenu)

@@ -1,11 +1,12 @@
-import React, { Component } from 'react'
-
+import React from 'react'
+import { connect } from 'react-redux'
+//components
 import SideMenu from '../components/SideMenu'
 import DisplayChannel from '../components/DisplayChannel'
-import MessageList from '../components/MessageList'
-
+import { selectChannel } from '../actions'
 
 class ChannelPage extends React.Component {
+
     state = {
         selectedChannel: null
     }
@@ -20,7 +21,6 @@ class ChannelPage extends React.Component {
         })
     }
 
-
     render() {
         return (
             <div className="ui grid">
@@ -29,11 +29,12 @@ class ChannelPage extends React.Component {
                 </div>
                 <div className="six wide column">
                     <DisplayChannel channel={ this.state.selectedChannel } unSelect = {this.unselectChannel} />
-                    <MessageList  channel={ this.state.selectedChannel } unSelect = {this.unselectChannel}/>
+                    {/* <MessageList /> */}
                 </div>
             </div>
         )
     }
 }
 
-export default ChannelPage 
+export default connect(null, { selectChannel } )(ChannelPage) 
+

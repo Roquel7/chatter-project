@@ -4,12 +4,13 @@ import {
     Route,
     Switch 
 } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import PrivateRoute from './PrivateRoute'
 import Header from './Header'
-
+import { saveUserData } from '../actions'
+//helper
 import { auth } from '../services/firebase'
-
 //pages
 import LoginPage from '../pages/LoginPage'
 import SignUpPage from '../pages/SignUpPage'
@@ -19,20 +20,18 @@ import ChannelPage from '../pages/ChannelPage'
 import InfoPage from '../pages/InfoPage'
 
 
-
-const App = () => {
+const App = props => {
     let [loading, setLoading] = useState(true) 
     let [ authenticated, setAuth ] = useState(false)
     let [ user, setUser ] = useState(null)
 
-    useEffect( () => {
+    useEffect( (props) => {
         auth().onAuthStateChanged( user => {
             if (user) {
                 setAuth(true)
                 setUser(user)
                 setLoading(false)
-                console.log(user)
-            } else {
+                saveUserData(user)            } else {
                 setAuth(false)
                 setUser(null)
                 setLoading(false)
@@ -59,18 +58,20 @@ const App = () => {
                             <PrivateRoute authenticated={ authenticated } path="/home" component={HomePage} />
                             <PrivateRoute authenticated={ authenticated } path="/info" component={InfoPage} />
                             <PrivateRoute authenticated={ authenticated } path="/channels" component={ChannelPage} />
-
-        
                         </Switch>
                     </div>
                 )}
-
-
             </div>
         </Router>
-
-        
     )
 }
 
-export default App
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = { saveUserData }
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
